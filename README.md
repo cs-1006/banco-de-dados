@@ -1,5 +1,7 @@
 # banco-de-dados
 
+*Nome do projeto: LocaRoda
+
 *Tema: Aplicativo para empresa de aluguel de carros para motoristas de aplicativo.
 
 *Objetivo: Criar um ambiente confortável e eficiente para a comunicação entre motorista e empresa, e a contratação de carros diversos em disponibilidade, especificando detalhes como modelo e duração do contrato.
