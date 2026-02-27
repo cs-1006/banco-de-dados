@@ -8,20 +8,23 @@
 
 ```mermaid 
 erDiagram
-    Motorista ||--o{ Contrato : "assina"
+    Usuario ||--o{ Contrato : "assina/atende"
     Empresa ||--o{ Veiculo : "possui"
     Empresa ||--o{ Contrato : "emite"
     Veiculo ||--o{ Contrato : "alocado_em"
     Contrato ||--o{ Pagamento : "gera"
     Veiculo ||--o{ Manutencao : "passa_por"
 
-    Motorista {
+    Usuario {
         string cpf PK
         string nome
-        string telefone
+        string sobrenome
+        string email
+        string endereco
+        string dados_bancarios
         string cnh
         string categoria_cnh
-        string email
+        boolean e_atendente "Define se tambem trabalha na empresa"
     }
 
     Empresa {
@@ -29,28 +32,29 @@ erDiagram
         string nome
         string email
         string endereco
-        float avaliacao
     }
 
     Veiculo {
         string placa PK
-        string modelo
         string marca
+        string modelo
+        string tipo "Moto, Caminhao, Carro de passeio"
         int ano
         string status "Disponivel, Alugado, Manutencao"
         float preco_diaria
-        string empresa_cnpj FK
     }
 
     Contrato {
-        int id PK
-        string motorista_cpf FK
+        int numero_contrato PK
+        datetime data_emissao
+        string motorista_cpf FK "Cliente"
         string veiculo_placa FK
         string empresa_cnpj FK
-        datetime data_inicio
-        datetime data_fim_prevista
-        float valor_caucao
-        string status "Ativo, Finalizado, Cancelado"
+        string tipo_pagamento "Cartao, Pix"
+        datetime periodo_inicio
+        datetime periodo_fim
+        float valor_total
+        string status
     }
 
     Pagamento {
@@ -58,8 +62,7 @@ erDiagram
         int contrato_id FK
         float valor
         datetime data_vencimento
-        datetime data_pagamento
-        string status "Pendente, Pago, Atrasado"
+        string status
     }
 
     Manutencao {
